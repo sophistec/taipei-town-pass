@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:developer';
 
 import 'package:town_pass/util/web_message_handler/tp_web_message_handler.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
@@ -26,7 +27,7 @@ abstract class TPWebMessageListener {
         for (TPWebMessageHandler handler in messageHandler) {
           if (handler.name == dataMap['name']) {
             await handler.handle(
-              message: dataMap['data'],
+              message: dataMap['data'].toString(),
               sourceOrigin: sourceOrigin,
               isMainFrame: isMainFrame,
               onReply: (reply) => replyProxy.postMessage(reply),
