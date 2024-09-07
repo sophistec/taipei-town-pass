@@ -9,6 +9,7 @@ abstract class TPWebMessageListener {
         LaunchMapWebMessageHandler(),
         PhoneCallMessageHandler(),
         LocationMessageHandler(),
+        LocationTrackMessageHandler(),
         DeviceInfoMessageHandler(),
         OpenLinkMessageHandler(),
       ];

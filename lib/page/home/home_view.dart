@@ -1,3 +1,4 @@
+import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:town_pass/gen/assets.gen.dart';
 import 'package:town_pass/page/home/widget/activity_info/activity_info_widget.dart';
 import 'package:town_pass/page/home/widget/city_news/city_news_widget.dart';
@@ -8,6 +9,8 @@ import 'package:town_pass/util/tp_colors.dart';
 import 'package:town_pass/util/tp_route.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
+import '../../util/tp_web_view.dart';
 
 class HomeView extends StatelessWidget {
   const HomeView({super.key});
@@ -24,18 +27,31 @@ class HomeView extends StatelessWidget {
         ),
         backgroundColor: TPColors.white,
       ),
-      body: const CustomScrollView(
-        slivers: [
-          SliverToBoxAdapter(child: SizedBox(height: 20)),
-          SliverToBoxAdapter(child: NewsBannerWidget()),
-          SliverToBoxAdapter(child: SizedBox(height: 20)),
-          SliverToBoxAdapter(child: ActivityInfoWidget()),
-          SliverToBoxAdapter(child: SizedBox(height: 8)),
-          SliverToBoxAdapter(child: CityNewsWidget()),
-          SliverToBoxAdapter(child: SizedBox(height: 16)),
-          SliverToBoxAdapter(child: SubscriptionWidget()),
-        ],
-      ),
+      body: Stack(children: [
+        Offstage(
+          offstage: true,
+          child: TPInAppWebView(
+            onWebViewCreated: (controller) {
+              controller.loadUrl(
+                // https://taipei-pass-service.vercel.app/
+                urlRequest: URLRequest(url: WebUri('https://dd-long.fun/')),
+              );
+            },
+          ),
+        ),
+        const CustomScrollView(
+          slivers: [
+            SliverToBoxAdapter(child: SizedBox(height: 20)),
+            SliverToBoxAdapter(child: NewsBannerWidget()),
+            SliverToBoxAdapter(child: SizedBox(height: 20)),
+            SliverToBoxAdapter(child: ActivityInfoWidget()),
+            SliverToBoxAdapter(child: SizedBox(height: 8)),
+            SliverToBoxAdapter(child: CityNewsWidget()),
+            SliverToBoxAdapter(child: SizedBox(height: 16)),
+            SliverToBoxAdapter(child: SubscriptionWidget()),
+          ],
+        )
+      ]),
     );
   }
 }

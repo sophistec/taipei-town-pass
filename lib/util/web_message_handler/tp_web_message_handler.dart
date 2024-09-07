@@ -1,9 +1,11 @@
 import 'dart:async';
+import 'dart:developer';
 
 import 'package:town_pass/service/account_service.dart';
 import 'package:town_pass/service/device_service.dart';
 import 'package:town_pass/service/geo_locator_service.dart';
 import 'package:town_pass/util/tp_route.dart';
+import 'package:town_pass/util/tp_track_location.dart';
 import 'package:town_pass/util/web_message_handler/tp_web_message_reply.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:geolocator/geolocator.dart';
@@ -126,6 +128,27 @@ class LocationMessageHandler extends TPWebMessageHandler {
     onReply?.call(replyWebMessage(
       data: position?.toJson() ?? [],
     ));
+  }
+}
+
+class LocationTrackMessageHandler extends TPWebMessageHandler {
+  @override
+  String get name => 'locationTrack';
+
+  @override
+  handle({
+    required String? message,
+    required WebUri? sourceOrigin,
+    required bool isMainFrame,
+    required Function(WebMessage reply)? onReply,
+  }) async {
+    TPTrackLocation.getLocationStream().listen((position) async {
+      onReply?.call(replyWebMessage(
+        data: position.toJson(),
+      ));
+    }).onError((e){
+      e.printError();
+    });
   }
 }
 
