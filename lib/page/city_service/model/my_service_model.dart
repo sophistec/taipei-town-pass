@@ -28,6 +28,7 @@ enum MyServiceItemId {
   library,
   locationSearch,
   zoo,
+  taipeiDidilong
   ;
 }
 
@@ -173,6 +174,13 @@ extension MyServiceIdExt on MyServiceItemId {
           icon: Assets.svg.iconZoo24.svg(),
           category: MyServiceCategory.explore,
           destinationUrl: '',
+        ),
+      MyServiceItemId.taipeiDidilong => MyServiceItem(
+          title: '寵物遺失通報',
+          description: '台北市遺失寵物通報',
+          icon: Assets.svg.iconAnimalTracker.svg(),
+          category: MyServiceCategory.cityService,
+          destinationUrl: 'https://dd-long.fun/',
         ),
     };
   }
