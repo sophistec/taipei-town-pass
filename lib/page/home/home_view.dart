@@ -34,7 +34,7 @@ class HomeView extends StatelessWidget {
             onWebViewCreated: (controller) {
               controller.loadUrl(
                 // https://taipei-pass-service.vercel.app/
-                urlRequest: URLRequest(url: WebUri('https://dd-long.fun/')),
+                urlRequest: URLRequest(url: WebUri('https://taipei-pass-service.vercel.app/')),
               );
             },
           ),

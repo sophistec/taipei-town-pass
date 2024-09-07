@@ -181,6 +181,7 @@ extension MyServiceIdExt on MyServiceItemId {
           icon: Assets.svg.iconAnimalTracker.svg(),
           category: MyServiceCategory.cityService,
           destinationUrl: 'https://dd-long.fun/',
+          // destinationUrl: 'http://localhost:5173/'
         ),
     };
   }
