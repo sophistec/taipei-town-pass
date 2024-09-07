@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:town_pass/gen/assets.gen.dart';
 import 'package:town_pass/page/home/widget/activity_info/activity_info_widget.dart';
@@ -33,8 +35,7 @@ class HomeView extends StatelessWidget {
           child: TPInAppWebView(
             onWebViewCreated: (controller) {
               controller.loadUrl(
-                // https://taipei-pass-service.vercel.app/
-                urlRequest: URLRequest(url: WebUri('https://dd-long.fun/')),
+                urlRequest: URLRequest(url: WebUri('http://10.0.2.2:3001/')),
               );
             },
           ),
